@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/existedLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        android:weightSum="100"
+
+
+        >
+
+
+        <LinearLayout
+            android:id="@+id/toplayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="90"
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1">
+
+                <EditText
+
+                    android:id="@+id/edittext1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/edittextbackground"
+
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingEnd="60dp"
+                    android:paddingRight="60dp"></EditText>
+
+                <Button
+
+                    android:id="@+id/btnAdd1"
+                    android:layout_width="60dp"
+                    android:layout_height="55dp"
+                    android:layout_alignEnd="@id/edittext1"
+                    android:layout_alignRight="@id/edittext1"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/btnbackground"
+                    android:text="Add"
+                    android:textColor="@android:color/white"></Button>
+
+                <Button
+                    android:id="@+id/btnClear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnAdd1"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/btnbackground"
+                    android:text="Clear"
+                    android:textColor="@android:color/white"></Button>
+
+                <ListView
+                    android:id="@+id/listview1"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    android:layout_below="@id/btnClear1"
+                    android:background="@drawable/listbackground"></ListView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/edittext2"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="55dp"
+                    android:background="@drawable/edittextbackground"
+
+                    android:inputType="text"
+
+                    android:maxLines="1"
+                    android:paddingEnd="60dp"
+                    android:paddingRight="60dp"></EditText>
+
+                <Button
+                    android:id="@+id/btnAdd2"
+                    android:layout_width="60dp"
+                    android:layout_height="55dp"
+                    android:layout_alignEnd="@id/edittext2"
+                    android:layout_alignRight="@id/edittext2"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/btnbackground"
+                    android:text="Add"
+                    android:textColor="@android:color/white"></Button>
+
+                <Button
+                    android:id="@+id/btnClear2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnAdd2"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/btnbackground"
+                    android:text="Clear"
+                    android:textColor="@android:color/white"></Button>
+
+                <ListView
+                    android:id="@+id/listview2"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    android:layout_below="@id/btnClear2"
+                    android:background="@drawable/listbackground"></ListView>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnCompare"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/toplayout"
+            android:layout_marginTop="4dp"
+            android:layout_weight="10"
+            android:background="@drawable/btnbackground"
+            android:text="Compare"
+            android:textColor="@android:color/white"></Button>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_totalmatches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_exactmatches"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:textColor="#000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="gone"></TextView>
+
+    <TextView
+
+        android:id="@+id/txt_exactmatches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="Exact Matches"
+        android:textColor="#000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="gone"></TextView>
+
+
+</RelativeLayout>
+
