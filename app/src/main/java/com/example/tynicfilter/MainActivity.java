@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editText1, editText2;
     Button buttonAdd1, buttonAdd2, buttonClear1, buttonClear2, buttonCompare;
     ListView listView1, listView2;
-    ArrayList<String> arrayList1;
+    ArrayList<String> arrayList1;  //name should be meaningfull
     ArrayList<String> arrayListCompare1;
     ArrayList<String> arrayList2;
     ArrayList<String> arrayListCompare2;
@@ -72,10 +72,16 @@ public class MainActivity extends AppCompatActivity {
                         String[] split = newItem.split(",");
                         for (String item : split) {
                             String trim = item.trim();
-                            arrayListCompare1.add(trim);
-                            arrayList1.add(index1 + ". " + trim);
+                            arrayListCompare1.add(trim);//touseeq bhai wohi to mujh se ni hora tha m yahi kehra tha apko k masla hojye ga
+                            arrayList1.add(index1 + ". " + trim);  //if client say need index exact you need to make model simple
+
                             index1++;
                         }
+
+                        //me bta dun ga  learning nahi ho gi khud kro until yourlast breath
+                        //hahaha i will //i never ask to senior untill my last try //so you never would be depend for anybody
+                        //make a model class with fields index and numbertext then arrayslist of model simple
+                        // if client say then i will work on what you said INSHAALLAH i ll do it
 
 //                    for (int i = 0; i < split.length;i++) {
 //                        String item = split[i].trim();

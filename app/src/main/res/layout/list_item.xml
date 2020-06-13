@@ -9,6 +9,7 @@
 
         android:textStyle="bold"
         android:textSize="40sp"
+        android:padding="5dp"
         android:id="@+id/txtListItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
