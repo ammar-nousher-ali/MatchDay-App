@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editText1, editText2;
     Button buttonAdd1, buttonAdd2, buttonClear1, buttonClear2, buttonCompare;
     ListView listView1, listView2;
-    ArrayList<String> arrayList1;  //name should be meaningfull
+    ArrayList<String> arrayList1;
     ArrayList<String> arrayListCompare1;
     ArrayList<String> arrayList2;
     ArrayList<String> arrayListCompare2;
@@ -82,27 +82,15 @@ public class MainActivity extends AppCompatActivity {
                         String[] split = newItem.split(",");
                         for (String item : split) {
                             String trim = item.trim();
-                            arrayListCompare1.add(trim);//touseeq bhai wohi to mujh se ni hora tha m yahi kehra tha apko k masla hojye ga
-                            mItem = new Item(index1, trim);
+                            arrayListCompare1.add(trim);
+                            mItem = new Item(index1, trim, false);
                             itemArrayList1.add(mItem);
                             arrayList1.add(index1 + ". " + trim);
-                            //if client say need index exact you need to make model simple
+
 
                             index1++;
                         }
 
-                        //me bta dun ga  learning nahi ho gi khud kro until yourlast breath
-                        //hahaha i will //i never ask to senior untill my last try //so you never would be depend for anybody
-                        //make a model class with fields index and numbertext then arrayslist of model simple
-                        // if client say then i will work on what you said INSHAALLAH i ll do it
-
-//                    for (int i = 0; i < split.length;i++) {
-//                        String item = split[i].trim();
-//
-//
-//                        arrayList1.add(index1 + " " + item);
-//                        index1++;
-//                    }
                         arrayAdapter1.notifyDataSetChanged();
 
                     } else if (newItem.contains("-")) {
@@ -110,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare1.add(trim);
-                            mItem = new Item(index1, trim);
+                            mItem = new Item(index1, trim, false);
                             itemArrayList1.add(mItem);
 
                             arrayList1.add(index1 + ". " + trim);
@@ -153,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare2.add(trim);
-                            mItem = new Item(index2, trim);
+                            mItem = new Item(index2, trim, false);
 
                             itemArrayList2.add(mItem);
                             arrayList2.add(index2 + ". " + trim);
@@ -167,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare2.add(trim);
-                            mItem = new Item(index2, trim);
+                            mItem = new Item(index2, trim, false);
                             itemArrayList2.add(mItem);
                             arrayList2.add(index2 + ". " + trim);
                             index2++;
@@ -254,10 +242,15 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < smallSize; i++) {
                             for (int j = 0; j < largeSize; j++) {
                                 if (itemArrayList2.get(i).getNumberText().equals(itemArrayList1.get(j).getNumberText())) {
-                                    arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
-                                    arrayListCompareFinal2.add(itemArrayList2.get(i).getIndex() + ". " + itemArrayList2.get(i).getNumberText());
-                                    indexComapare++;
-                                    break;
+                                    if (!itemArrayList1.get(j).isFound()) {
+
+                                        arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
+                                        arrayListCompareFinal2.add(itemArrayList2.get(i).getIndex() + ". " + itemArrayList2.get(i).getNumberText());
+
+                                        itemArrayList1.get(j).setFound(true);
+                                        break;
+
+                                    }
                                 }
                             }
                         }
@@ -290,10 +283,15 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < smallSize; i++) {
                             for (int j = 0; j < largeSize; j++) {
                                 if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())) {
-                                    arrayListCompareFinal1.add(itemArrayList1.get(i).getIndex() + ". " + itemArrayList1.get(i).getNumberText());
-                                    arrayListCompareFinal2.add(itemArrayList2.get(j).getIndex() + ". " + itemArrayList2.get(j).getNumberText());
-                                    indexComapare++;
-                                    break;
+                                    if (!itemArrayList2.get(j).isFound()) {
+
+                                        arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
+                                        arrayListCompareFinal2.add(itemArrayList2.get(i).getIndex() + ". " + itemArrayList2.get(i).getNumberText());
+
+                                        itemArrayList2.get(j).setFound(true);
+                                        break;
+
+                                    }
                                 }
                             }
                         }
@@ -326,10 +324,15 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < itemArrayList1.size(); i++) {
                             for (int j = 0; j < itemArrayList2.size(); j++) {
                                 if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())) {
-                                    arrayListCompareFinal1.add(itemArrayList1.get(i).getIndex() + ". " + itemArrayList1.get(i).getNumberText());
-                                    arrayListCompareFinal2.add(itemArrayList2.get(j).getIndex() + ". " + itemArrayList2.get(j).getNumberText());
-                                    indexComapare++;
-                                    break;
+                                    if (!itemArrayList2.get(j).isFound()) {
+
+                                        arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
+                                        arrayListCompareFinal2.add(itemArrayList2.get(i).getIndex() + ". " + itemArrayList2.get(i).getNumberText());
+
+                                        itemArrayList2.get(j).setFound(true);
+                                        break;
+
+                                    }
                                 }
                             }
                         }
