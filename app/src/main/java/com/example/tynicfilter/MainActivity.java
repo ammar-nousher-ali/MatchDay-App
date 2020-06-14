@@ -30,10 +30,17 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> arrayListCompare1;
     ArrayList<String> arrayList2;
     ArrayList<String> arrayListCompare2;
-    ArrayList<String> arrayListCompare;
+    ArrayList<String> arrayListCompareFinal1;
+    ArrayList<String> arrayListCompareFinal2;
     ArrayAdapter<String> arrayAdapter1;
     ArrayAdapter<String> arrayAdapter2;
-    ArrayAdapter<String> arrayAdapterCompare;
+    ArrayAdapter<String> arrayAdapterCompareFinal1;
+    ArrayAdapter<String> arrayAdapterCompareFinal2;
+
+
+    ArrayList<Item> itemArrayList1;
+    ArrayList<Item> itemArrayList2;
+    Item mItem;
 
 
     int index1 = 1;
@@ -51,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
         listView1 = findViewById(R.id.listview1);
         listView2 = findViewById(R.id.listview2);
 
-        arrayListCompare = new ArrayList<>();
+        itemArrayList1 = new ArrayList<>();
+        itemArrayList2 = new ArrayList<>();
+        arrayListCompareFinal1 = new ArrayList<>();
+        arrayListCompareFinal2 = new ArrayList<>();
         arrayListCompare1 = new ArrayList<>();
         arrayListCompare2 = new ArrayList<>();
         arrayList1 = new ArrayList<>();
@@ -73,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare1.add(trim);//touseeq bhai wohi to mujh se ni hora tha m yahi kehra tha apko k masla hojye ga
-                            arrayList1.add(index1 + ". " + trim);  //if client say need index exact you need to make model simple
+                            mItem = new Item(index1, trim);
+                            itemArrayList1.add(mItem);
+                            arrayList1.add(index1 + ". " + trim);
+                            //if client say need index exact you need to make model simple
 
                             index1++;
                         }
@@ -97,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare1.add(trim);
+                            mItem = new Item(index1, trim);
+                            itemArrayList1.add(mItem);
+
                             arrayList1.add(index1 + ". " + trim);
                             index1++;
                         }
@@ -110,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Wrong input , Enter Numbers Only", Toast.LENGTH_SHORT).show();
                 }
                 editText1.setText("");
-                arrayListCompare.clear();
+                arrayListCompareFinal1.clear();
+                arrayListCompareFinal2.clear();
 
                 textViewExact.setVisibility(View.GONE);
                 textViewTotalMatches.setVisibility(View.GONE);
@@ -136,8 +153,11 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare2.add(trim);
+                            mItem = new Item(index2, trim);
+
+                            itemArrayList2.add(mItem);
                             arrayList2.add(index2 + ". " + trim);
-//                        arrayList1.add(index + " " + item);
+
                             index2++;
                         }
                         arrayAdapter2.notifyDataSetChanged();
@@ -147,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
                         for (String item : split) {
                             String trim = item.trim();
                             arrayListCompare2.add(trim);
+                            mItem = new Item(index2, trim);
+                            itemArrayList2.add(mItem);
                             arrayList2.add(index2 + ". " + trim);
                             index2++;
 
@@ -161,7 +183,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Wrong input , Enter Numbers Only", Toast.LENGTH_SHORT).show();
                 }
                 editText2.setText("");
-                arrayListCompare.clear();
+                arrayListCompareFinal1.clear();
+                arrayListCompareFinal2.clear();
 
                 textViewExact.setVisibility(View.GONE);
                 textViewTotalMatches.setVisibility(View.GONE);
@@ -176,14 +199,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 arrayList1.clear();
 
+
+                arrayListCompareFinal1.clear();
+                arrayListCompareFinal2.clear();
                 textViewExact.setVisibility(View.GONE);
                 textViewTotalMatches.setVisibility(View.GONE);
 
                 arrayListCompare1.clear();
-                arrayListCompare.clear();
+                arrayListCompareFinal1.clear();
+                arrayListCompareFinal2.clear();
                 index1 = 1;
                 arrayAdapter1.notifyDataSetChanged();
-                arrayAdapterCompare.notifyDataSetChanged();
+                arrayAdapterCompareFinal1.notifyDataSetChanged();
+                arrayAdapterCompareFinal2.notifyDataSetChanged();
             }
         });
 
@@ -193,53 +221,144 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 arrayList2.clear();
+
+                arrayListCompareFinal1.clear();
+                arrayListCompareFinal2.clear();
                 textViewExact.setVisibility(View.GONE);
                 textViewTotalMatches.setVisibility(View.GONE);
 
                 arrayListCompare2.clear();
-                arrayListCompare.clear();
+                arrayListCompareFinal1.clear();
+                arrayListCompareFinal2.clear();
                 index2 = 1;
                 arrayAdapter2.notifyDataSetChanged();
-                arrayAdapterCompare.notifyDataSetChanged();
+                arrayAdapterCompareFinal1.notifyDataSetChanged();
+                arrayAdapterCompareFinal2.notifyDataSetChanged();
             }
         });
 
-        arrayAdapterCompare = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtListItem, arrayListCompare);
+        arrayAdapterCompareFinal1 = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtListItem, arrayListCompareFinal1);
+        arrayAdapterCompareFinal2 = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtListItem, arrayListCompareFinal2);
 
         buttonCompare = findViewById(R.id.btnCompare);
         buttonCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
-                    for (int i = 0; i < arrayListCompare1.size(); i++) {
-                        for (int j = 0; j < arrayListCompare2.size(); j++) {
-                            if (arrayListCompare1.get(i).equals(arrayListCompare2.get(j))) {
-                                arrayListCompare.add(indexComapare + ". " + arrayListCompare1.get(i));
-                                indexComapare++;
+
+                int smallSize = 0;
+                int largeSize = 0;
+                if (itemArrayList1.size() > itemArrayList2.size()) {
+                    smallSize = itemArrayList2.size();
+                    largeSize = itemArrayList1.size();
+                    if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
+                        for (int i = 0; i < smallSize; i++) {
+                            for (int j = 0; j < largeSize; j++) {
+                                if (itemArrayList2.get(i).getNumberText().equals(itemArrayList1.get(j).getNumberText())) {
+                                    arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
+                                    arrayListCompareFinal2.add(itemArrayList2.get(i).getIndex() + ". " + itemArrayList2.get(i).getNumberText());
+                                    indexComapare++;
+                                    break;
+                                }
                             }
                         }
+
+
+                        textViewExact.setVisibility(View.VISIBLE);
+                        textViewTotalMatches.setText(arrayListCompareFinal1.size() + " Total");
+                        textViewTotalMatches.setVisibility(View.VISIBLE);
+
+                        listView1.setAdapter(arrayAdapterCompareFinal1);
+                        listView2.setAdapter(arrayAdapterCompareFinal2);
+
+                        arrayAdapterCompareFinal1.notifyDataSetChanged();
+                        arrayAdapterCompareFinal2.notifyDataSetChanged();
+
+
+                    } else {
+                        if (arrayList1.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "can't compare first listbox is empty", Toast.LENGTH_SHORT).show();
+                        }
+                        if (arrayList2.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "can't compare second list box is empty", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                } else if (itemArrayList1.size() < itemArrayList2.size()) {
+                    smallSize = itemArrayList1.size();
+                    largeSize = itemArrayList2.size();
+                    if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
+                        for (int i = 0; i < smallSize; i++) {
+                            for (int j = 0; j < largeSize; j++) {
+                                if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())) {
+                                    arrayListCompareFinal1.add(itemArrayList1.get(i).getIndex() + ". " + itemArrayList1.get(i).getNumberText());
+                                    arrayListCompareFinal2.add(itemArrayList2.get(j).getIndex() + ". " + itemArrayList2.get(j).getNumberText());
+                                    indexComapare++;
+                                    break;
+                                }
+                            }
+                        }
+
+
+                        textViewExact.setVisibility(View.VISIBLE);
+                        textViewTotalMatches.setText(arrayListCompareFinal1.size() + " Total");
+                        textViewTotalMatches.setVisibility(View.VISIBLE);
+
+                        listView1.setAdapter(arrayAdapterCompareFinal1);
+                        listView2.setAdapter(arrayAdapterCompareFinal2);
+
+                        arrayAdapterCompareFinal1.notifyDataSetChanged();
+                        arrayAdapterCompareFinal2.notifyDataSetChanged();
+
+
+                    } else {
+                        if (arrayList1.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "can't compare first listbox is empty", Toast.LENGTH_SHORT).show();
+                        }
+                        if (arrayList2.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "can't compare second list box is empty", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
+                } else if (itemArrayList1.size() == itemArrayList2.size()) {
 
-                    textViewExact.setVisibility(View.VISIBLE);
-                    textViewTotalMatches.setText(arrayListCompare.size() + " Total");
-                    textViewTotalMatches.setVisibility(View.VISIBLE);
+                    if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
+                        for (int i = 0; i < itemArrayList1.size(); i++) {
+                            for (int j = 0; j < itemArrayList2.size(); j++) {
+                                if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())) {
+                                    arrayListCompareFinal1.add(itemArrayList1.get(i).getIndex() + ". " + itemArrayList1.get(i).getNumberText());
+                                    arrayListCompareFinal2.add(itemArrayList2.get(j).getIndex() + ". " + itemArrayList2.get(j).getNumberText());
+                                    indexComapare++;
+                                    break;
+                                }
+                            }
+                        }
 
-                    listView1.setAdapter(arrayAdapterCompare);
-                    listView2.setAdapter(arrayAdapterCompare);
 
-                    arrayAdapterCompare.notifyDataSetChanged();
+                        textViewExact.setVisibility(View.VISIBLE);
+                        textViewTotalMatches.setText(arrayListCompareFinal1.size() + " Total");
+                        textViewTotalMatches.setVisibility(View.VISIBLE);
+
+                        listView1.setAdapter(arrayAdapterCompareFinal1);
+                        listView2.setAdapter(arrayAdapterCompareFinal2);
+
+                        arrayAdapterCompareFinal1.notifyDataSetChanged();
+                        arrayAdapterCompareFinal2.notifyDataSetChanged();
 
 
-                } else {
-                    if (arrayList1.isEmpty()) {
-                        Toast.makeText(MainActivity.this, "can't compare first listbox is empty", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (arrayList1.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "can't compare first listbox is empty", Toast.LENGTH_SHORT).show();
+                        }
+                        if (arrayList2.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "can't compare second list box is empty", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
-                    if (arrayList2.isEmpty()) {
-                        Toast.makeText(MainActivity.this, "can't compare second list box is empty", Toast.LENGTH_SHORT).show();
-                    }
+
 
                 }
+
                 arrayList1.clear();
                 index1 = 1;
                 arrayList2.clear();
@@ -247,6 +366,8 @@ public class MainActivity extends AppCompatActivity {
                 arrayListCompare1.clear();
                 arrayListCompare2.clear();
                 indexComapare = 1;
+                itemArrayList1.clear();
+                itemArrayList2.clear();
             }
         });
 

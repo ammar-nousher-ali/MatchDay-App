@@ -14,6 +14,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="100"
+
+
         >
 
 
@@ -72,7 +74,6 @@
                     android:id="@+id/listview1"
                     android:layout_width="match_parent"
                     android:layout_height="600dp"
-                    tools:listitem="@layout/list_item"
                     android:layout_below="@id/btnClear1"
                     android:background="@drawable/listbackground"></ListView>
             </RelativeLayout>
@@ -154,7 +155,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="gone"></TextView>
-<!--id name should be meaning full-->
+
     <TextView
 
         android:id="@+id/txt_exactmatches"
@@ -164,11 +165,11 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:text="Exact Matches"
-        android:textColor="@android:color/black"
+        android:textColor="#000"
         android:textSize="30sp"
         android:textStyle="bold"
         android:visibility="gone"></TextView>
-<!--dont user hard code text color etc -->
+
 
 </RelativeLayout>
 
