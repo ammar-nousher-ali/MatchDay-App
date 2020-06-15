@@ -241,7 +241,8 @@ public class MainActivity extends AppCompatActivity {
                     if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
                         for (int i = 0; i < smallSize; i++) {
                             for (int j = 0; j < largeSize; j++) {
-                                if (itemArrayList2.get(i).getNumberText().equals(itemArrayList1.get(j).getNumberText())) {
+                                if (itemArrayList2.get(i).getNumberText().equals(itemArrayList1.get(j).getNumberText()) &&
+                                        String.valueOf(itemArrayList2.get(i).getIndex()).equals(String.valueOf(itemArrayList1.get(j).getIndex()))) {
                                     if (!itemArrayList1.get(j).isFound()) {
 
                                         arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
@@ -282,7 +283,8 @@ public class MainActivity extends AppCompatActivity {
                     if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
                         for (int i = 0; i < smallSize; i++) {
                             for (int j = 0; j < largeSize; j++) {
-                                if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())) {
+                                if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())&&
+                                        String.valueOf(itemArrayList1.get(i).getIndex()).equals(String.valueOf(itemArrayList2.get(j).getIndex()))) {
                                     if (!itemArrayList2.get(j).isFound()) {
 
                                         arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
@@ -323,7 +325,8 @@ public class MainActivity extends AppCompatActivity {
                     if (!arrayList1.isEmpty() && !arrayList2.isEmpty()) {
                         for (int i = 0; i < itemArrayList1.size(); i++) {
                             for (int j = 0; j < itemArrayList2.size(); j++) {
-                                if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())) {
+                                if (itemArrayList1.get(i).getNumberText().equals(itemArrayList2.get(j).getNumberText())&&
+                                        String.valueOf(itemArrayList1.get(i).getIndex()).equals(String.valueOf(itemArrayList2.get(j).getIndex()))) {
                                     if (!itemArrayList2.get(j).isFound()) {
 
                                         arrayListCompareFinal1.add(itemArrayList1.get(j).getIndex() + ". " + itemArrayList1.get(j).getNumberText());
