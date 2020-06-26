@@ -14,8 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="100"
-
-
         >
 
 
@@ -23,7 +21,7 @@
             android:id="@+id/toplayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="90"
+            android:layout_weight="80"
             android:orientation="horizontal"
             android:weightSum="2"
 
@@ -139,7 +137,17 @@
             android:layout_marginTop="4dp"
             android:layout_weight="10"
             android:background="@drawable/btnbackground"
-            android:text="Compare"
+            android:text="@string/compare"
+            android:textColor="@android:color/white"></Button>
+        <Button
+            android:id="@+id/btnBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/btnCompare"
+            android:layout_marginTop="4dp"
+            android:layout_weight="10"
+            android:background="@drawable/btnbackground"
+            android:text="@string/box"
             android:textColor="@android:color/white"></Button>
     </LinearLayout>
 
