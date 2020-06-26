@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100"
-        >
+        android:weightSum="100">
 
 
         <LinearLayout
@@ -23,7 +22,7 @@
             android:layout_height="0dp"
             android:layout_weight="80"
             android:orientation="horizontal"
-            android:weightSum="2"
+            android:weightSum="120"
 
             >
 
@@ -31,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
-                android:layout_weight="1">
+                android:layout_weight="55">
 
                 <EditText
 
@@ -80,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
-                android:layout_weight="1">
+                android:layout_weight="55">
 
                 <EditText
                     android:id="@+id/edittext2"
@@ -125,6 +124,40 @@
                     android:background="@drawable/listbackground"></ListView>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="10"
+
+                >
+
+                <ImageButton
+                    android:id="@+id/btnDropUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="110dp"
+
+                    android:background="@drawable/image_btn_background"
+                    android:src="@drawable/ic_baseline_arrow_drop_up_24"
+                    android:tint="@android:color/white"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btnDropDown"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@drawable/image_btn_background"
+                    android:src="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:tint="@android:color/white"></ImageButton>
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -139,6 +172,7 @@
             android:background="@drawable/btnbackground"
             android:text="@string/compare"
             android:textColor="@android:color/white"></Button>
+
         <Button
             android:id="@+id/btnBox"
             android:layout_width="match_parent"
@@ -149,6 +183,17 @@
             android:background="@drawable/btnbackground"
             android:text="@string/box"
             android:textColor="@android:color/white"></Button>
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btnScroll"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_below="@id/btnBox"-->
+        <!--            android:layout_marginTop="4dp"-->
+        <!--            android:layout_weight="10"-->
+        <!--            android:background="@drawable/btnbackground"-->
+        <!--            android:text="Scroll"-->
+        <!--            android:textColor="@android:color/white"></Button>-->
     </LinearLayout>
 
     <TextView

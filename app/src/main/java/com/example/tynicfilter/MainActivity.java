@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewExact;
     TextView textViewTotalMatches;
     EditText editText1, editText2;
-    Button buttonAdd1, buttonAdd2, buttonClear1, buttonClear2, buttonCompare, buttonBox;
+    Button buttonAdd1, buttonAdd2, buttonClear1, buttonClear2, buttonCompare, buttonBox, buttonScroll;
+    ImageButton imageButtonUp, imageButtonDown;
     ListView listView1, listView2;
     ArrayList<String> arrayList1;
     ArrayList<String> arrayListCompare1;
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 arrayListCompareFinal2.clear();
                 textViewExact.setVisibility(View.GONE);
                 textViewTotalMatches.setVisibility(View.GONE);
-
+                itemArrayList1.clear();
                 arrayListCompare1.clear();
                 arrayListCompareFinal1.clear();
                 arrayListCompareFinal2.clear();
@@ -211,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 arrayList2.clear();
 
+                itemArrayList2.clear();
                 arrayListCompareFinal1.clear();
                 arrayListCompareFinal2.clear();
                 textViewExact.setVisibility(View.GONE);
@@ -530,6 +533,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        imageButtonUp = findViewById(R.id.btnDropUp);
+        imageButtonUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemArrayList1.size() > itemArrayList2.size()) {
+
+                    int index = listView1.getFirstVisiblePosition();
+                    listView1.smoothScrollToPosition(index - 1);
+                    listView2.smoothScrollToPosition(index - 1);
+                } else if (itemArrayList1.size() < itemArrayList2.size()) {
+                    int index = listView2.getFirstVisiblePosition();
+                    listView1.smoothScrollToPosition(index - 1);
+                    listView2.smoothScrollToPosition(index - 1);
+                } else if (itemArrayList1.size() == itemArrayList2.size()) {
+                    int index = listView2.getFirstVisiblePosition();
+                    listView1.smoothScrollToPosition(index - 1);
+                    listView2.smoothScrollToPosition(index - 1);
+                }
+            }
+        });
+
+
+        imageButtonDown = findViewById(R.id.btnDropDown);
+        imageButtonDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemArrayList1.size() > itemArrayList2.size()) {
+
+                    int index = listView1.getLastVisiblePosition();
+                    listView1.smoothScrollToPosition(index + 1);
+                    listView2.smoothScrollToPosition(index + 1);
+                } else if (itemArrayList1.size() < itemArrayList2.size()) {
+                    int index = listView2.getLastVisiblePosition();
+                    listView1.smoothScrollToPosition(index + 1);
+                    listView2.smoothScrollToPosition(index + 1);
+                } else if (itemArrayList1.size() == itemArrayList2.size()) {
+                    int index = listView2.getLastVisiblePosition();
+                    listView1.smoothScrollToPosition(index + 1);
+                    listView2.smoothScrollToPosition(index + 1);
+                }
+            }
+        });
 
     }
 
